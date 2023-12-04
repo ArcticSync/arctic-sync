@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Button = ({text}) => {
+const Button = ({ text }) => {
   return (
-    <div className="w h-[34px] px-3 py-1.5 bg-orange-400 rounded-md justify-start items-center gap-2.5 inline-flex hover:bg-white border-2 border-orange-400 transition-all duration-300 ease-in-out">
-        <div className="text-black text-sm font-serif font-['Noto Serif']">{text}</div>
+    <div className="relative w-[100px] h-[34px] bg-gradient-to-l from-amber-100 to-orange-500 rounded-md justify-center items-center gap-2.5 inline-flex overflow-hidden">
+      <button className="text-black text-sm font-serif z-10">{text}</button>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-orange-400 to-orange-500 animate-shimmer"></div>
     </div>
   );
 }

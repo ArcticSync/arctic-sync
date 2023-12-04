@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this in your CSS file or inline styles */
+@keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(90deg, #F59E0B, #D97706, #F59E0B);
+    background-size: 200% 100%;
+    animation: shimmer 7.5s infinite linear;
+  }
+  
