@@ -1,7 +1,7 @@
 import { LitNodeClient, checkAndSignAuthMessage, encryptFileAndZipWithMetadata, decryptZipFileWithMetadata } from "@lit-protocol/lit-node-client";
 
 const litNodeClient = new LitNodeClient({
-    litNetwork: 'serrano',
+    litNetwork: 'cayenne',
     alertWhenUnauthorized: false,
 });
 
@@ -34,6 +34,7 @@ export async function encrypt(file, username, walletAddress) {
             chain: "ethereum",
             file: file,
             litNodeClient,
+            readme: "switify"
         },
     );
 

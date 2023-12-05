@@ -50,7 +50,7 @@ const page = async () => {
                 return encrypt(file,username,walletAddress)
             })
         )
-        // https://node1.irys.xyz/l4js9C7R_7AsN3ph0HjA9sm7S_tlY359afinLOB6z0c
+        // https://node1.irys.xyz/1IUh8KylQEQYn9TrNIpah8I9XA9Q1UaXPa0PmxFX2CA
         // const res = await fetch(`https://arweave.net/w8S4uMyhU_VsjkuqPKLUV0NtKU8tiJMVKTCbCxxkKfU`);
 		// 	const blob = await res.blob();
         // console.log(">>>>>>>>>>>>>>>>>>>>>",encryptedFileArray)
