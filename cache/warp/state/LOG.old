@@ -1,6 +1,0 @@
-2023/12/05-13:46:21.125211 16ffbf000 Recovering log #47
-2023/12/05-13:46:21.125278 16ffbf000 Level-0 table #49: started
-2023/12/05-13:46:21.125831 16ffbf000 Level-0 table #49: 726 bytes OK
-2023/12/05-13:46:21.126485 16ffbf000 Delete type=0 #47
-2023/12/05-13:46:21.126555 16ffbf000 Delete type=3 #45
-2023/12/05-13:46:21.126744 1700d7000 Moved #40 to level-1 1226 bytes OK: files[ 3 6 0 0 0 0 0 ]
