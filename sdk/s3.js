@@ -1,5 +1,4 @@
 import { S3Client, ListObjectsV2Command, GetObjectCommand, S3 } from '@aws-sdk/client-s3';
-import { Readable } from 'stream'
 
 
 // Configure AWS SDK v3 with your credentials and region
@@ -11,24 +10,6 @@ const s3Client = new S3Client({
     region: 'ap-south-1',
 });
 
-async function streamToBuffer(stream) {
-    return new Promise((resolve, reject) => {
-        const chunks = [];
-        stream.on('data', (chunk) => chunks.push(chunk));
-        stream.on('end', () => resolve(Buffer.concat(chunks)));
-        stream.on('error', reject);
-    });
-}
-
-// Function to write a JSON file
-async function writeJsonFile(filePath, data) {
-    try {
-        await fs.writeFile(filePath, JSON.stringify(data, null, 2), { encoding: 'utf-8' }, (e) => { console.log(e) });
-        console.log(`File written to: ${filePath}`);
-    } catch (error) {
-        console.error('Error writing file:', error);
-    }
-}
 
 // Function to get information about all files in the S3 bucket
 async function getBucketInfo(bucketName) {
@@ -74,43 +55,6 @@ async function getBucketInfo(bucketName) {
         throw error; // Re-throw the error for handling in the calling code, if needed
     }
 }
-
-// Function to get a file from S3 using the key
-async function getFileFromS3(bucketName, key) {
-    try {
-        // Create a GetObjectCommand with the bucket name and key
-        const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
-
-        // Execute the command and get the response
-        const response = await s3Client.send(command);
-        // console.log(await response.Body.transformToByteArray())
-        const blob = new Blob([await response.Body.transformToByteArray()])
-        console.log(blob)
-        // Create a Readable stream from the response body
-        const fileStream = Readable.from(response.Body);
-        console.log(fileStream)
-        const fileBuffer = await streamToBuffer(fileStream);
-
-        // Create a file object with metadata
-        const fileObject = {
-            key: key,
-            content: fileBuffer.toString('utf-8'), // Assuming the content is text; adjust accordingly
-            contentType: response.ContentType,
-            contentLength: response.ContentLength,
-            lastModified: response.LastModified,
-        };
-
-        console.log(fileObject)
-        // Save the file stream or process it as needed
-        // For example, you can pipe the stream to a writable file stream
-        // fileStream.pipe(fs.createWriteStream('path/to/save/file.txt'));
-
-        console.log(`File ${key} retrieved successfully.`);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
 
 
 export async function getFileObjectFromS3(key) {
@@ -178,6 +122,5 @@ export async function getData() {
             return getFileObjectFromS3(filePath);
         })
     )
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>", uploadArray)
     return { uploadArray, bucketInfo }
 }

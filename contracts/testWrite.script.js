@@ -1,7 +1,6 @@
 import { writeContract } from "arweavekit/contract"
 import deployment from "./deployment.json" assert { type: "json" }
 import fs from 'fs'
-import { ENV } from "../env.js"
 import { createWallet } from 'arweavekit/wallet'
 
 const wallet = await createWallet({ environment: "mainnet" });
@@ -9,7 +8,7 @@ const wallet = await createWallet({ environment: "mainnet" });
 
 
 const CNT_TX_ID = deployment.contractAddr
-const envr = ENV === "DEV" ? "testnet" : "mainnet"
+const envr = "mainnet"
 const username = ["lucifer", "john", "megabyte"]
 const filePath = ["test.json", "folder/one.txt", "file.jpeg", "run.js"]
 const owners = ["Ra4v8HF0injoBO7rjbujkRJ3HzVmXfynrrOs_QN62t4", wallet.walletAddress]
