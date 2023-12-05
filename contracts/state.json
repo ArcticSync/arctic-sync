@@ -1,0 +1,30 @@
+{
+    "data": {},
+    "publicFunctions": {
+        "addOrUpdateFiles": [
+            "data"
+        ],
+        "getFilesHashThroughUsername": [
+            "username"
+        ],
+        "getFileByFilePath": [
+            "username",
+            "filePath"
+        ],
+        "isUsername": [
+            "username"
+        ],
+        "createOwners": [
+            "username",
+            "owners"
+        ],
+        "modifyOwners": [
+            "username",
+            "owners"
+        ],
+        "getOwners": [],
+        "isOwner": [
+            "username"
+        ]
+    }
+}
