@@ -50,7 +50,7 @@ const Landing = () => {
             <div className="flex-1 h-1 bg-gray-300"></div>
           </div>
           <div>
-            <DarkButton text="Continue with Othend" />
+            <DarkButton text="Continue with Othent" />
           </div>
           <div className='pt-8 flex flex-col gap-2'>
             <div className='text-md'>
