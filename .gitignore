@@ -15,7 +15,7 @@
 
 # production
 /build
-
+/cache
 # misc
 .DS_Store
 *.pem
@@ -35,3 +35,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+env.js
+
+.env
+
+contracts/wallet.json
+
+wallet.json
