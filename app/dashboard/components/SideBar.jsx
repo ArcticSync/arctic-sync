@@ -24,10 +24,10 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="flex">
-      <div className="fixed w-20 h-screen p-4 bg-white-r-[1px] flex flex-col justify-between">
+      <div className="fixed w-20 h-screen p-4 pt-0 bg-white-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <SidebarItem href="/" icon={<RxPerson size={20} />} label="Profile" />
-          <span className="border-b-[1px] border-black-200 w-full p-2"></span>
+          <span className="border-b-[1px] border-black-200 w-full p-2 pt-0"></span>
           <SidebarItem href="/dashboard" icon={<RxDashboard size={20} />} label="Dashboard" />
           <SidebarItem href="/files" icon={<FaFile size={20} />} label="File Explorer" />
           <SidebarItem href="/settings" icon={<FiSettings size={20} />} label="Settings" />

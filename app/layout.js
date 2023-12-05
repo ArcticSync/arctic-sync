@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Poppins } from 'next/font/google'
+import { ArweaveWalletKit } from "arweave-wallet-kit";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <ArweaveWalletKit>
+        <body className={poppins.className}>{children}</body>
+      </ArweaveWalletKit>
     </html>
   )
 }
