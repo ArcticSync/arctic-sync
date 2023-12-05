@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 /* Add this in your CSS file or inline styles */
 @keyframes shimmer {
@@ -10,10 +11,34 @@
     100% {
       background-position: -200% 0;
     }
-  }
-  
-  .animate-shimmer {
+}
+
+.animate-shimmer {
     background: linear-gradient(90deg, #F59E0B, #D97706, #F59E0B);
     background-size: 200% 100%;
     animation: shimmer 7.5s infinite linear;
-  }
+}
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 18, 19, 18; /* Updated to #121312 */
+        --background-end-rgb: 18, 19, 18; /* Updated to #121312 */
+    }
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+    )
+        rgb(var(--background-start-rgb));
+}

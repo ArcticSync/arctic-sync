@@ -1,4 +1,5 @@
 import React from 'react'
+import DragComponent from '../uploader/DragComponent'
 
 const Owner = () => {
   return (
@@ -6,7 +7,7 @@ const Owner = () => {
       <div>
         {/* Add Owners */}
         {/* CSV */}
-        
+        <DragComponent />
         {/* CRUD */}
       </div>
       <div>

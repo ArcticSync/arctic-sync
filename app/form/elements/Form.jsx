@@ -4,13 +4,14 @@ import SignUpInfo from './SignUpInfo';
 import Owner from './Owner';
 import Display from './Display';
 import DisplayFiles from './DisplayFiles';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Form = () => {
 
   const [page, setPage] = useState(0);
 
   const FormTitles = [
-    "Grant S3 Read Access",
+    "",
     "Owners and Confirmations",
     "Review",
     "Something Something"
@@ -35,25 +36,25 @@ const Form = () => {
             <div className="header text-black text-[30px] font-bold">
               <h1>{FormTitles[page]}</h1>
             </div>
-            <div className="form-body flex">
+            <div className="body">
               <PageDisplay />
             </div>
-            <div className="footer">
+            <div className="footer flex gap-8 justify-center mt-8">
             <button 
               disabled={page === 0}
-              className='relative w-[100px] h-[34px] bg-gradient-to-l from-amber-300 to-orange-500 rounded-md flex items-center justify-center gap-2.5 overflow-hidden hover:border-2 hover:border-orange-500 transition-all duration-300'
+              className=' w-[89px] h-8 px-4 py-2.5 rounded border-2 border-orange-500 justify-center items-center gap-2.5 inline-flex'
               onClick={() => {
                 setPage((currPage) => currPage - 1);
               }}
             >
-              <span className="text-white font-semibold text-sm">Prev</span>
+              <span className="text-orange-500 text-base font-normal font-['Inter'] flex justify-center items-center gap-2"><FaArrowLeft/>Back</span>
             </button>
             <button
                 disabled={page === FormTitles.length-1} 
-                className='relative w-[100px] h-[34px] bg-gradient-to-l from-amber-300 to-orange-500 rounded-md flex items-center justify-center gap-2.5 overflow-hidden hover:border-2 hover:border-orange-500 transition-all duration-300'
+                className=' w-[89px] h-8 px-4 py-2.5 rounded border-2 border-orange-500 bg-orange-500 justify-center items-center gap-2.5 inline-flex'
                 onClick={() => {
                   setPage((currPage) => currPage+1)
-                }}> <span className="text-white font-semibold text-sm">Next</span>
+                }}> <span className="text-white text-base font-normal font-['Inter'] flex justify-center items-center gap-2">Next </span>
             </button>
             </div>
         </div>
