@@ -3,7 +3,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 const Uptime = () => {
   return (
-    <div className='flex flex-col bg-[#1c1c1c] w-64 rounded-md'>
+    <div className='w-[321px] flex flex-col bg-[#1c1c1c] rounded-md'>
+      <div className='p-4'>Uptime</div>
       <div className='p-4'>
         <ProgressBar completed={100} bgColor="#088770" animateOnRender={true} />
       </div>

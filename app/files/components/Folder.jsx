@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
 
-function Folder({ handleInsertNode = () => {}, explorer }) {
+function Folder({ handleInsertNode = () => {}, explorer, isRoot = false }) {
   const [expand, setExpand] = useState(false);
   const [showInput, setShowInput] = useState({
     visible: false,
@@ -35,37 +36,27 @@ function Folder({ handleInsertNode = () => {}, explorer }) {
   };
 
   return (
-    <div className="m-20 mt-8">
+    <div className="m-20 mt-8 p-10 bg-[#1c1c1c]">
       <div
         onContextMenu={contextMenuHandler}
         onClick={() => setExpand(!expand)}
-        className="flex items-center folder cursor-pointer"
+        className={`flex items-center folder cursor-pointer ${
+          isRoot ? "flex-row-reverse" : "flex-row"
+        }`}
       >
-        <div className="flex flex-col">
-          <div className="mr-2">
-            <Image src="/mac-folder.png" width={33} height={20} />
-          </div>
-          <span className="text-gray-600">{explorer.name}</span>
-        </div>
-        <div className="ml-auto flex space-x-2">
-          <button
-            onClick={(e) => handleNewFolder(e, true)}
-            className="hover:text-blue-600"
-          >
-            📁
-          </button>
-          <button
-            onClick={(e) => handleNewFolder(e, false)}
-            className="hover:text-blue-600"
-          >
-            📄
-          </button>
+        <div className="flex flex-col justify-center items-center mr-2">
+          <Image
+            src={isRoot ? "/arrow.png" : "/mac-folder.png"}
+            width={isRoot ? 20 : 33}
+            height={isRoot ? 20 : 20}
+          />
+          <span className="text-gray-600 text-xs">{explorer.name}</span>
         </div>
       </div>
 
       <div
-        style={{ display: expand ? "block" : "none", paddingLeft: 25 }}
-        className="ml-6"
+        style={{ display: expand ? "flex" : "none", paddingLeft: 25 }}
+        className="ml-6 flex flex-wrap"
       >
         {showInput.visible && (
           <div
@@ -76,7 +67,13 @@ function Folder({ handleInsertNode = () => {}, explorer }) {
               left: showInput.position.x,
             }}
           >
-            <span className="mr-2">{showInput.isFolder ? "📁" : "📄"}</span>
+            <span className="mr-2">
+              {showInput.isFolder ? (
+                <Image src="/mac-folder.png" width="33" height="20" />
+              ) : (
+                <Image src="/mac-file.png" width="33" height="20" />
+              )}
+            </span>
             <input
               type="text"
               className="inputContainer__input border-none focus:outline-none"

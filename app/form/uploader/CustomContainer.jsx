@@ -152,7 +152,7 @@ export function CustomDragDrop({
       <div
         className={`${
           dragging
-            ? "border border-[#2B92EC] bg-[#EDF2FF]"
+            ? "border border-[#2B92EC] bg-[#1c1c1c]"
             : "border-dashed border-[#e0e0e0]"
         } flex items-center justify-center mx-auto text-center border-2 rounded-md mt-4 py-5`}
         ref={dropContainer}
@@ -189,7 +189,7 @@ export function CustomDragDrop({
       {ownerLicense.length > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-y-4 gap-x-4">
           {ownerLicense.map((img, index) => (
-            <div className="w-full px-3 py-3.5 rounded-md bg-slate-200 space-y-3">
+            <div className="w-full px-3 py-3.5 rounded-md bg-[#1c1c1c] space-y-3">
               <div className="flex justify-between">
                 <div className="w-[70%] flex justify-start items-center space-x-2">
                   <div

@@ -13,11 +13,20 @@ const page = () => {
         <Navbar/>
         <div className='flex'>
           <Sidebar/>
-          <div>
-            <Profile/>
-            <CostOvertime />
-            <Uptime />
-            <StorageUsed />
+          <div className="flex mt-12">
+            {/* Left column with Profile, Uptime, and StorageUsed components */}
+            <div className="flex flex-col">
+              <Profile />
+              <div className='mt-2 mb-2'>
+              <Uptime />
+              </div>
+              <StorageUsed />
+            </div>
+
+            {/* Right column with CostOvertime component */}
+            <div className="ml-4">
+              <CostOvertime />
+            </div>
           </div>
         </div>
     </div>

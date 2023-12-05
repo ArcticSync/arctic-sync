@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { CiWallet } from 'react-icons/ci';
 import { useConnection, useActiveAddress } from 'arweave-wallet-kit';

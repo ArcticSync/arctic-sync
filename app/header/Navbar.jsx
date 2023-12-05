@@ -9,7 +9,11 @@ const Navbar = () => {
         <Image src="../logo.svg" width={40} height={40} alt="Logo" />
         <span className='ml-2 text-lg text-white'>Swiftify</span>
       </div>
-      <Button text='Connect' />
+      <div className='flex gap-20'>
+        <div className='flex items-center gap-2 transition-opacity duration-300 ease-in-out hover:opacity-70'><a href="/dashboard">Dashboard</a></div>
+        <div className='flex items-center gap-2 transition-opacity duration-300 ease-in-out hover:opacity-70'><a href="/form">Upload</a></div>
+        <Button text='Connect' />
+      </div>
     </div>
   );
 }
