@@ -40,3 +40,5 @@ env.js
 .env
 
 contracts/wallet.json
+
+wallet.json
