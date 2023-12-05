@@ -1,0 +1,35 @@
+import React, { useState } from 'react'
+import OwnerList from './OwnerList'
+import OwnerInput from './OwnerInput'
+
+const Owners = () => {
+  const [listTodo,setListTodo]=useState([]);
+  let addList = (inputText)=>{
+    if(inputText!=='')
+      setListTodo([...listTodo,inputText]);
+  }
+  const deleteListItem = (key)=>{
+    let newListTodo = [...listTodo];
+    newListTodo.splice(key,1)
+    setListTodo([...newListTodo])
+  }
+  return (
+    <div className="main-container bg-[#1c1c1c] rounded-lg p-10 pt-2 flex justify-start">
+      <div className="center-container">
+        <div className='p-2 pl-0'>
+          Add new owner
+        </div>
+        <OwnerInput addList={addList}/>
+        <div className='pt-1'>
+          {listTodo.map((listItem,i)=>{
+            return (
+              <OwnerList key={i} index={i} item={listItem} deleteItem={deleteListItem}/>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Owners
