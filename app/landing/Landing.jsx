@@ -34,7 +34,7 @@ const Landing = () => {
         <div className='flex flex-col items-center gap-3 text-center'>
           <div className='flex items-center gap-3'>
             <Image src='../logo.svg' width={20} height={20} /> 
-            <span className='font-semibold text-xl'>Swiftify</span>
+            <span className='font-semibold text-xl'>ArcticSync</span>
           </div>
           <div className='pt-20 text-2xl font-semibold'>
             Create Account

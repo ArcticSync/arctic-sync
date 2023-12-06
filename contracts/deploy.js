@@ -3,7 +3,7 @@ import fs from "fs"
 
 
 const w = JSON.parse(fs.readFileSync("./wallet.json", "utf8"))
-const src = fs.readFileSync("./swiftify.js", "utf8")
+const src = fs.readFileSync("./.js", "utf8")
 const istate = fs.readFileSync("./state.json", "utf8")
 
 

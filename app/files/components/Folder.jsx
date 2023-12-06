@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import { viewResult2 } from "@/contracts/testRead.script";
 
 function Folder({ handleInsertNode = () => {}, explorer, isRoot = false }) {
   const [expand, setExpand] = useState(false);
@@ -9,6 +10,30 @@ function Folder({ handleInsertNode = () => {}, explorer, isRoot = false }) {
     isFolder: false,
     position: { x: 0, y: 0 },
   });
+  const [filesData, setFilesData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const result = await viewResult2();
+
+            console.log("🚀 GetOwners ran successfully ✅ ✅.....", result);
+
+            if (result && result["lucifer"]) {
+                console.log("Lucifer data found:", result["lucifer"]);
+                setFilesData(result["lucifer"]);
+            } else {
+                console.warn("No data found for 'lucifer'.");
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            // Handle the error or set an error state
+        }
+    };
+
+    // Call the fetchData function
+    fetchData();
+}, []); 
 
   const handleNewFolder = (e, isFolder) => {
     e.stopPropagation();
@@ -44,6 +69,7 @@ function Folder({ handleInsertNode = () => {}, explorer, isRoot = false }) {
           isRoot ? "flex-row-reverse" : "flex-row"
         }`}
       >
+        <button className="" onClick={async ()=>{await viewResult2()}}>Clicl</button>
         <div className="flex flex-col justify-center items-center mr-2">
           <Image
             src={isRoot ? "/arrow.png" : "/mac-folder.png"}
@@ -92,6 +118,15 @@ function Folder({ handleInsertNode = () => {}, explorer, isRoot = false }) {
           />
         ))}
       </div>
+      <div>
+            {/* Render your component based on filesData */}
+            {filesData && (
+                <div>
+                    {/* Render your data here */}
+                    {JSON.stringify(filesData)}
+                </div>
+            )}
+        </div>
     </div>
   );
 }

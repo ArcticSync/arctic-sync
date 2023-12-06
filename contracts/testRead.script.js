@@ -1,10 +1,10 @@
 import { viewContractState } from "arweavekit/contract"
 import deployment from "./deployment.json" assert { type: "json" }
-import { ENV } from "../env.js"
+// import { ENV } from "../env.js"
 
 
 const CNT_TX_ID = deployment.contractAddr
-const envr = ENV === "DEV" ? "local" : "mainnet"
+// const envr = ENV === "DEV" ? "local" : "mainnet"
 const username = ["lucifer", "john", "megabyte"]
 const filePath = ["test.json", "folder/one.txt", "file.jpeg", "run.js"]
 
@@ -42,19 +42,23 @@ const filePath = ["test.json", "folder/one.txt", "file.jpeg", "run.js"]
 //                       |___/                              
 
 // */
-// const viewResult2 = await viewContractState({
-//     environment: "testnet",
-//     contractTxId: CNT_TX_ID,
-//     options: {
-//         function: "getFilesHashThroughUsername",
-//         username: username[0],
-//     },
-//     cacheOptions: {
-//         inMemory: true
-//     }
-// })
-
-// console.log("🚀 GetOwners ran successfully ✅ ✅.....", viewResult2.viewContract.result)
+export const viewResult2 = async() => {
+    const res = await viewContractState({
+        environment: "mainnet",
+        contractTxId: CNT_TX_ID,
+        options: {
+            function: "getFilesHashThroughUsername",
+            data: {username: username[0]},
+        }
+    })
+     
+    console.log("🚀 GetOwners ran successfully ✅ ✅.....") 
+    // const res = viewResult2.viewContract.state.data
+    // res.files[username]
+    const filesData = res.viewContract.state.data.files;
+    return filesData
+    
+}
 
 // /*
 
@@ -139,21 +143,21 @@ const filePath = ["test.json", "folder/one.txt", "file.jpeg", "run.js"]
                                                        
  
 */
-const viewResult5 = await viewContractState({
-    environment: "testnet",
-    contractTxId: CNT_TX_ID,
-    options: {
-        function: "isOwner",
-        username: username[0]
-    },
-    cacheOptions: {
-        inMemory: true
-    }
-})
+// const viewResult5 = await viewContractState({
+//     environment: "mainnet",
+//     contractTxId: CNT_TX_ID,
+//     options: {
+//         function: "isOwner",
+//         username: username[0]
+//     },
+//     cacheOptions: {
+//         inMemory: true
+//     }
+// })
 
-console.info("🚀 isOwner true ran successfully ✅ ✅.....")
-console.info(viewResult5.viewContract.state.data)
-console.log(viewResult5.viewContract.result)
+// console.info("🚀 isOwner true ran successfully ✅ ✅.....")
+// console.info(viewResult5.viewContract.state.data)
+// console.log(viewResult5.viewContract.result)
 
 /*
  
@@ -165,16 +169,16 @@ console.log(viewResult5.viewContract.result)
                                                         
  
 */
-const viewResult6 = await viewContractState({
-    environment: "testnet",
-    contractTxId: CNT_TX_ID,
-    options: {
-        function: "isOwner",
-        username: username[1]
-    },
-    cacheOptions: {
-        inMemory: true
-    }
-})
+// const viewResult6 = await viewContractState({
+//     environment: "mainnet",
+//     contractTxId: CNT_TX_ID,
+//     options: {
+//         function: "isOwner",
+//         username: username[1]
+//     },
+//     cacheOptions: {
+//         inMemory: true
+//     }
+// })
 
-console.log("🚀 isOwner flase ran successfully ✅ ✅.....", viewResult6.viewContract.result)
+// console.log("🚀 isOwner flase ran successfully ✅ ✅.....", viewResult6.viewContract.result)

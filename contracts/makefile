@@ -7,7 +7,7 @@ mem write --function-id  35609815-7e5f-82c3-30f6-dae9324d5c51 --inputs '{
     }]
 }' --testnet
 
-mem deploy --src ./contracts/swiftify.js --init-state ./contracts/state.json  --testnet 
+mem deploy --src ./contracts/.js --init-state ./contracts/state.json  --testnet 
 
 mem write --function-id 35609815-7e5f-82c3-30f6-dae9324d5c51 --inputs '{
     "function": "createOwners",

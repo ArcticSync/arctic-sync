@@ -4,7 +4,7 @@ const LandFooter = () => {
   return (
     <footer className="text-sm p-2 pt-0 m-2 mt-0 font-semibold">
       <div className="flex justify-center">
-        <a href="#" className="mx-2">&copy; Swiftify</a>
+        <a href="#" className="mx-2">&copy; </a>
         <span className="mx-2">|</span>
         <a href="#" className="mx-2 underline text-[#12ff7f]">Terms</a>
         <span className="mx-2">|</span>
