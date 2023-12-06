@@ -3,13 +3,15 @@ const verify = async (username, walletAddress) => {
     const contractState = `https://dre-1.warp.cc/contract?id=OYT53hhfAAoJI7mevZ4AWDSIuUXAgt9dtftuAgkHKyk`
     try {
         const response = await fetch(contractState).then((res) => res.json());
-        const owners = response.data.owners[username]
+        const owners = response.state.data.owners[username]
 
         // const signatureRes = await fetch(signatureUrl).then((res) => res.json());
 
         if (owners.indexOf(walletAddress) !== -1) return true
+        return false
     } catch (e) {
         console.log(e);
     }
     return false;
 };
+

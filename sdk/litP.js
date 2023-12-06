@@ -11,7 +11,7 @@ export async function encrypt(file, username, walletAddress) {
     await litNodeClient.connect();
     const accessControlConditions = [
         {
-            contractAddress: "ipfs://bafkreidykldygoenck7oacifmt35lbwrulqq7ltel2rmjwj6zerou4th3i",
+            contractAddress: "ipfs://QmSgpNorup2GC12mpBe9gY6gjs7tJoLg6pedxKxm5aTeTY",
             standardContractType: "LitAction",
             conditionType: "evmBasic",
             chain: "ethereum",
@@ -37,32 +37,36 @@ export async function encrypt(file, username, walletAddress) {
             readme: "switify"
         },
     );
-
+    console.log(res)
     const encryptedFile = new File([res], file.name, {
         lastModified: file.lastModified,
         type: file.ContentType
     });
-
+    // encryptedFile.tags = [{ name: "Content-Type", value: file.ContentType }, { name: "App-Name", value: "swiftify" }, { name: "File-Path", value: key }]
     return encryptedFile;
 }
 
 
 export const decryptFile = async ({ file }) => {
     const authSig = await checkAndSignAuthMessage({ chain: "ethereum" })
+    console.log(authSig)
+    await litNodeClient.connect();
     try {
-        console.log("##########", "here", file)
+
         const res = await decryptZipFileWithMetadata({
             authSig,
             litNodeClient,
             file
         });
-        console.log(res)
         if (!res) {
             return null;
         }
-        console.log(res);
-        const { decryptedFile, metadata } = res;
-        return { decryptedFile, metadata };
+        const blob = new Blob([res.decryptedFile])
+        const decryptedFile = new File([blob], res.metadata.name, {
+            type: res.metadata.type
+        })
+        console.log(decryptedFile)
+        return decryptedFile
     } catch (error) {
         console.log(error);
         return null;
