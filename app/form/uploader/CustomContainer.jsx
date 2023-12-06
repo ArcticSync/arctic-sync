@@ -185,50 +185,6 @@ export function CustomDragDrop({
           </div>
         </div>
       </div>
-
-      {ownerLicense.length > 0 && (
-        <div className="mt-4 grid grid-cols-2 gap-y-4 gap-x-4">
-          {ownerLicense.map((img, index) => (
-            <div className="w-full px-3 py-3.5 rounded-md bg-[#1c1c1c] space-y-3">
-              <div className="flex justify-between">
-                <div className="w-[70%] flex justify-start items-center space-x-2">
-                  <div
-                    className="text-[#5E62FF] text-[37px] cursor-pointer"
-                    onClick={() => showImage(img.photo)}
-                  >
-                    {img.type.match(/image.*/i) ? (
-                      <FaRegFileImage />
-                    ) : (
-                      <FaRegFile />
-                    )}
-                  </div>
-                  <div className=" space-y-1">
-                    <div className="text-xs font-medium text-gray-500">
-                      {img.name}
-                    </div>
-                    <div className="text-[10px] font-medium text-gray-400">{`${Math.floor(
-                      img.size / 1024
-                    )} KB`}</div>
-                  </div>
-                </div>
-                <div className="flex-1 flex justify-end">
-                  <div className="space-y-1">
-                    <div
-                      className="text-gray-500 text-[17px] cursor-pointer"
-                      onClick={() => onDelete(index)}
-                    >
-                      <BsX className="ml-auto" />
-                    </div>
-                    <div className="text-[10px] font-medium text-gray-400">
-                      Done
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </>
   );
 }
