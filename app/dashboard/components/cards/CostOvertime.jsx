@@ -32,11 +32,11 @@ const storageData = [
 
 function CostOvertime() {
   const data = {
-    labels: storageData.map((data) => data.month, key=data),
+    labels: storageData.map((data) => data.month),
     datasets: [
       {
         label: "Cost",
-        data: storageData.map((data) => data.sales, key=data),
+        data: storageData.map((data) => data.sales),
         borderColor: "#088770",
         borderWidth: 3,
         pointBorderColor: "#088770",

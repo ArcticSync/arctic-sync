@@ -17,7 +17,7 @@ const useMyContext = () => {
 }
 
 const ContextProvider = ({ children }) => {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState("pratham");
   const [wallet, setWallet] = useState(null);
   const [owners, setOwners] = useState([]);
 

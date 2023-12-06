@@ -1,7 +1,10 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
+import { useMyContext } from '@/app/context/context';
 
 const Profile = () => {
+  const {username,wallet} = useMyContext()
   return (
     <div>
       <div className='w-[321px] h-[191px] relative bg-[#1c1c1c] rounded-md shadow flex-col justify-start items-start inline-flex'>
@@ -10,10 +13,10 @@ const Profile = () => {
         </div>
         <div className="p-4">
           <div className="text-white font-bold text-sm">
-            Username: JohnDoe
+            Username: {username}
           </div>
-          <div className="text-white text-sm">
-            Address: 123 Main Street
+          <div className="text-white text-sm truncate">
+            Address: {wallet?.walletAddress.substr(1,15)} . . . . 
           </div>
         </div>
       </div>
