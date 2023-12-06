@@ -3,9 +3,20 @@
 import { WebIrys } from "@irys/sdk";
 import {getData} from "@/sdk/s3";
 import {encrypt,decryptFile} from "@/sdk/litP"
+import deployment from "@/contracts/deployment.json" assert { type: "json" }
+import { writeContract } from "arweavekit/contract"
+import React,{ useState } from "react";
+import { createWallet } from 'arweavekit/wallet'
 
 
-const page = async () => {
+
+
+
+const Page = () => {
+    const environment = "mainnet";
+
+    const [decryptedFile, setDecryptedFile] = useState(null);
+
     const getWebIrys = async () => {
         const arconnect = window.arweaveWallet;
         await arconnect.connect(["ACCESS_ADDRESS", "ACCESS_PUBLIC_KEY", "SIGN_TRANSACTION", "SIGNATURE"]);
@@ -18,7 +29,7 @@ const page = async () => {
     const fundNode = async () => {
         const webIrys = await getWebIrys();
         try {
-            const fundTx = await webIrys.fund(webIrys.utils.toAtomic(0.02));
+            const fundTx = await webIrys.fund(webIrys.utils.toAtomic(0.07));
             console.log(`Successfully funded ${webIrys.utils.fromAtomic(fundTx.quantity)} ${webIrys.token}`);
         } catch (e) {
             console.log("Error uploading data ", e);
@@ -35,30 +46,87 @@ const page = async () => {
             const receipt = await webIrys.uploadFolder(folderData);
             console.log(`Data uploaded ==> https://gateway.irys.xyz/${receipt.id}`);
             console.log(receipt)
+            return receipt.manifestId
         } catch (e) {
             console.log("Error uploading data ", e);
         }
     };
 
     const handleUpload = async () => {
-        const username = "lucifer"
-        const walletAddress = "Ra4v8HF0injoBO7rjbujkRJ3HzVmXfynrrOs_QN62t4"
+        const wallet = await createWallet({ environment: "mainnet" });
+        const username = "test8"
+        const walletAddress =[ "Ra4v8HF0injoBO7rjbujkRJ3HzVmXfynrrOs_QN62t4","c4BqumMcUn6bEcCq2KO29BFc5EVTgtRlv4R2NKiQZ1Q",wallet.walletAddress]
+
+        // add owners
+        console.log(
+            await writeContract({
+            environment,
+            contractTxId: deployment.contractAddr,
+            wallet: wallet.key,
+            options: {
+                function: "createOwners",
+                username,
+                owners: walletAddress
+            }
+        })
+        )
+
+        // get data from s3
         const {uploadArray,bucketInfo} = await getData()
 
+        // // Encrypt data
         const encryptedFileArray = await Promise.all(
             uploadArray.map(file => {
-                return encrypt(file,username,walletAddress)
+                return encrypt(file,username,walletAddress[1])
             })
         )
-        // https://node1.irys.xyz/1IUh8KylQEQYn9TrNIpah8I9XA9Q1UaXPa0PmxFX2CA
-        // const res = await fetch(`https://arweave.net/w8S4uMyhU_VsjkuqPKLUV0NtKU8tiJMVKTCbCxxkKfU`);
-		// 	const blob = await res.blob();
-        // console.log(">>>>>>>>>>>>>>>>>>>>>",encryptedFileArray)
-        // const temp = new File([blob],"test")
-        // console.log(blob)
-        // console.log(await decryptFile({file: temp}))
+        console.log("==================================",encryptedFileArray)
+        // Upload data
+        const manifestId = await uploadData(encryptedFileArray, bucketInfo.totalSize) 
+        // const manifestId = "GWkZzGrXYl3uThokleX68DXzxWyZmyNOfmkySFV_8nM"
+        let folder = []
+        while(true){
+            try{
+                folder = await(await fetch(`https://node1.irys.xyz/${manifestId}`)).json()  
+                break;
+            } catch(e) {
+                console.log(e)
+            }            
+
+        }
+        console.log(folder)
+
+        const paths = folder.paths;
+        const data = []
+        for (const key in paths) {
+            data.push({
+                filePath: key,
+                txnHash: paths[key].id
+            })
+        }
+        const response = await writeContract({
+            environment,
+            contractTxId: deployment.contractAddr,
+            wallet: wallet.key,
+            options: {
+                function: "addOrUpdateFiles",
+                username: username,
+                data
+            }
+        })
+        console.log(response)
+        console.log(">>>>>>>>>>>",response.state.data)
+        const res = await fetch(`https://arweave.net/${response.state.data.files[username]["eth_logo.png"]}`);
+			const blob = await res.blob();
+        const temp = new File([blob],"test")
+        console.log(temp)
+        const newFile= await decryptFile({file: temp})
+        setDecryptedFile(newFile)
         // if(!file) throw "No file found"
-        await uploadData(encryptedFileArray, bucketInfo.totalSize)   
+
+
+
+        // Update the smart contract
         
 /*
  
@@ -74,15 +142,24 @@ const page = async () => {
   return (
     <div>
         tst
-        <h1>Test page</h1>
+        <h1>Test Page</h1>
         <button
         className="bg-blue-500 rounded-full text-white px-6 py-3"
         onClick={handleUpload}
       >
         Upload
       </button>
+      {decryptedFile ? (
+				<a
+					href={URL.createObjectURL(decryptedFile)}
+					alt={decryptedFile.name}
+					className='bg-blue-500 rounded-full text-white px-6 py-3'
+				/>
+			) : (
+				"Please decrypt"
+			)}
     </div>
   )
 }
 
-export default page
+export default Page
