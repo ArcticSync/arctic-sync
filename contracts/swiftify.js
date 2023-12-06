@@ -55,7 +55,7 @@ export async function handle(state, action) {
         case "getOwners":
             state.data.owners = state.data.owners || {}
             if (!state.data.owners.hasOwnProperty(input.username)) throw new ContractError("ERROR_USERNAME_DOES_NOT_EXIST")
-
+ 
             return { result: state.data.owners[input.username] }
 
         case "addOrUpdateFiles":

@@ -28,7 +28,6 @@ const Form = () => {
       return <DisplayFiles />
     }
   }
-
   return (
     <div className='form'>
         <div className='progressBar'></div>

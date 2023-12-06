@@ -1,6 +1,25 @@
-import React from 'react';
+import { Message_data } from '@/app/context/context';
+import React, { useContext, useState } from 'react';
 
 const SignUpInfo = () => {
+
+  
+// const tx1 = await writeContract({
+//   environment: envr,
+//   contractTxId: CNT_TX_ID,
+//   wallet: wallet.key,
+//   options: {
+//       function: "createOwners",
+//       username: username[0],
+//       owners: owners
+//   },
+//   cacheOptions: {
+//       inMemory: true
+//   }
+// })
+
+// console.info("Create Owners ", tx1.state)
+  const { username, setUsername} = useContext(Message_data)
   return (
     <div className='flex flex-col items-center justify-center'>
       <div className=''>
@@ -25,6 +44,7 @@ const SignUpInfo = () => {
                   type="text"
                   placeholder='Enter Username'
                   className='p-2 border w-[187px] h-8 rounded-md focus:outline-none focus:shadow-outline-blue text-black'
+                  onChange={(e) => setUsername(e.target.value)}                
                 />
               </div>
             </div>

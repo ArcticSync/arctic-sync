@@ -94,7 +94,7 @@ export async function getFileObjectFromS3(key) {
             lastModified: response.lastModified,
             type: response.ContentType
         })
-        file.tags = [{ name: "Content-Type", value: response.ContentType }, { name: "App-Name", value: "swiftify" }, { name: "File-Path", value: key }]
+        file.tags = [{ name: "Content-Type", value: response.ContentType }, { name: "App-Name", value: "" }, { name: "File-Path", value: key }]
         return file; // return SomeData
 
     } catch (error) {
@@ -105,7 +105,7 @@ export async function getFileObjectFromS3(key) {
 
 
 // Replace 'YOUR_BUCKET_NAME' with your actual S3 bucket name
-const bucketName = 'swiftify';
+const bucketName = '';
 
 // Call the function to get bucket information
 // await getBucketInfo(bucketName);
