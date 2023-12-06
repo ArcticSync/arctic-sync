@@ -20,7 +20,7 @@ export default function Files() {
   return (
     <div className="Files">
       <Navbar />
-      <Dashboard />
+      {/* <Dashboard /> */}
       <Folder handleInsertNode={handleInsertNode} explorer={explorerData} />
     </div>
   );

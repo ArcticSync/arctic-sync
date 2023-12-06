@@ -45,16 +45,15 @@ const Upload = () => {
         // Upload data
         const manifestId = await uploadData(encryptedFileArray, bucketInfo.totalSize) 
         // const manifestId = "GWkZzGrXYl3uThokleX68DXzxWyZmyNOfmkySFV_8nM"
-        let folder = []
-        while(true){
-            try{
-                folder = await(await fetch(`https://node1.irys.xyz/${manifestId}`)).json()  
-                break;
-            } catch(e) {
-                console.log(e)
-            }            
+        let folder = await(await fetch(`https://node1.irys.xyz/${manifestId}`)).json()  
+        // while(true){
+        //     try{
+                // break;
+            // } catch(e) {
+            //     console.log(e)
+            // }            
 
-        }
+        // }
         console.log(folder)
 
         const paths = folder.paths;

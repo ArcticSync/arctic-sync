@@ -29,7 +29,7 @@ const Sidebar = ({ children }) => {
           <SidebarItem href="/" icon={<RxPerson size={20} />} label="Profile" />
           <span className="border-b-[1px] border-black-200 w-full p-2 pt-0"></span>
           <SidebarItem href="/dashboard" icon={<RxDashboard size={20} />} label="Dashboard" />
-          <SidebarItem href="/files" icon={<FaFile size={20} />} label="File Explorer" />
+          <SidebarItem href="/dashboard/files" icon={<FaFile size={20} />} label="File Explorer" />
           <SidebarItem href="/settings" icon={<FiSettings size={20} />} label="Settings" />
           <SidebarItem href="/" icon={<VscDebugDisconnect size={20} />} label="Disconnect" />
         </div>
