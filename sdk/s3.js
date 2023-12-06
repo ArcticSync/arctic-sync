@@ -105,7 +105,7 @@ export async function getFileObjectFromS3(key) {
 
 
 // Replace 'YOUR_BUCKET_NAME' with your actual S3 bucket name
-const bucketName = '';
+const bucketName = 'swiftify';
 
 // Call the function to get bucket information
 // await getBucketInfo(bucketName);

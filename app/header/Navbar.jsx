@@ -11,7 +11,7 @@ const Navbar = () => {
       </div>
       <div className='flex gap-20'>
         <div className='flex items-center gap-2 transition-opacity duration-300 ease-in-out hover:opacity-70'><a href="/dashboard">Dashboard</a></div>
-        <div className='flex items-center gap-2 transition-opacity duration-300 ease-in-out hover:opacity-70'><a href="/form">Upload</a></div>
+        <div className='flex items-center gap-2 transition-opacity duration-300 ease-in-out hover:opacity-70'><a href="/upload">Upload</a></div>
         <Button text='Connect' />
       </div>
     </div>

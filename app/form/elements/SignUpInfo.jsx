@@ -1,5 +1,5 @@
-import { Message_data } from '@/app/context/context';
-import React, { useContext, useState } from 'react';
+import { Message_data, useMyContext } from '@/app/context/context';
+import React, { useState } from 'react';
 
 const SignUpInfo = () => {
 
@@ -19,7 +19,7 @@ const SignUpInfo = () => {
 // })
 
 // console.info("Create Owners ", tx1.state)
-  const { username, setUsername} = useContext(Message_data)
+  const { username, setUsername} = useMyContext()
   return (
     <div className='flex flex-col items-center justify-center'>
       <div className=''>
